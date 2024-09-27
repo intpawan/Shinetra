@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shinetra</title>
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <div class="container">
+
+    
+      <div class="sidebar sidebargo"> 
+        
+        <nav>
+            <ul>
+                <li><a href="index.html"> Home    </a>  </li>
+                <li><a href="intro.html"> My Intro</a>  </li>
+                <li><a href="service.html"> Services</a>  </li>
+                <li><a href="blog.html"> Blog    </a>  </li>
+                <li><a href="contact.html"> Contact Shi    </a>  </li>
+                
+            </ul>
+        </nav>
+    </div>
+    <div class="main">
+
+        <div class="hamburger">
+            <img class="ham" src="img/sidebar.png" width="23" >
+            <img class="cross" src="img/x-symbol.svg" width="23">
+        </div>
+
+        <div class="infoContainer">
+            <h1> Contact Shi for more info </h1>
+            <form onsubmit="sendEmail(); reset(); return validateForm()">
+                <div class="mb-3">
+                  <label for="clintemail" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="clintemail" aria-describedby="emailHelp" placeholder=" Email" required>
+                  
+                </div>
+                <div class="mb-3">
+                  <label for="clintphone" class="form-label">Phone</label>
+                  <input type="phone" class="form-control" id="clintphone" placeholder="Phone" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="clintmessage" class="form-label">Write your message</label>
+                  <input type="message" class="form-control" id="clintmessage" aria-describedby="message" placeholder=" how can i help you?" required>
+                  
+                </div>
+                <div id="emailHelp" class="form-text">Your data will kept protected.</div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+                  <label class="form-check-label" for="exampleCheck1">accept</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+    </div>
+
+</div>
+<script src="script.js"></script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+  function validateForm() {
+      const email = document.getElementById("clintemail").value;
+      const phone = document.getElementById("clintphone").value;
+      const message = document.getElementById("clintmessage").value;
+      const checkbox = document.getElementById("exampleCheck1").checked;
+      const errorMessage = document.getElementById("error-message");
+
+      errorMessage.innerText = ""; // Clear any previous error message
+
+      if (!email || !phone || !message || !checkbox) {
+          errorMessage.innerText = "Please fill all fields and accept the terms before submitting.";
+          return false; // Prevent form submission
+      }
+
+      sendEmail(); // If all fields are filled, send the email
+      return false; // Prevent default form submission since email is handled by sendEmail()
+  }
+
+  function sendEmail() {
+      Email.send({
+          Host: "smtp.gmail.com",
+          Username: "myemail@gmail.com", 
+          Password: "mypassword",
+          To: 'pl.infosystem@gmail.com',
+          From: document.getElementById("clintemail").value,
+          Subject: "New Contact Enquiry",
+          Body: "Phone: " + document.getElementById("clintphone").value + "<br>" +
+                "Message: " + document.getElementById("clintmessage").value
+      }).then(
+          message => alert("Email sent successfully!")
+      ).catch(
+          error => alert("Failed to send email: " + error)
+      );
+  }
+</script>
+
+
+</body>
+</html>

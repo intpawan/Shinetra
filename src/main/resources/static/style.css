@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    
+}
+
+.sidebar {
+    background-color: rgb(202, 190, 190);
+    /*width: 20vw;
+    height: 100vh;*/
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.2s ease-in;
+    position: absolute;
+
+}
+
+.sidebar nav {
+    padding: 45px;
+}
+
+.sidebar nav li {
+    list-style: none;
+    font-size: 30px;
+    padding: 33px 0;
+}
+.sidebar nav li a{
+    
+    font-size: 20px;
+    padding: 30px 0;
+    text-decoration: none;
+    color: black;
+}
+.sidebar nav li a:hover{
+    color:rgb(19, 19, 161);
+    font-weight: bold;
+}
+
+.main {
+   
+    background-color: black;
+   
+}
+
+
+.infoContainer{
+    display: flex;
+    background-color: rgba(166, 173, 166, 0.08);
+    color: aliceblue;
+    
+    margin: 145px auto;
+    justify-content: space-around;
+    padding-left: 10px;
+    
+
+}
+.welcome{
+    font-size: 5em;
+    color: #d9b91b;
+    position: relative;
+    animation: rotateText 7s linear infinite;
+    transform-style: preserve-3d;
+    margin-left: 20vw;
+    margin-top: 10vh;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px #8b8d91, 4px 4px 0px #90a6b5;
+}
+
+@keyframes rotateText {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(50deg);
+    }
+    100% {
+        transform: rotateY(0deg);
+    }
+}
+
+.container {
+    display: flex;
+}
+
+.devInfo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+.hello{
+    font-size: 40px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.name{
+    font-size: 2em;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+.about{
+    font-size: 2.em;
+    font-family: 'Poppins', sans-serif;
+    
+}
+.moreabout{
+    font-size: 1em;
+    margin-top: 20px;
+}
+
+.buttons button{
+    color: gold;
+    background-color: black;
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    
+}
+.buttons button:hover{
+    color: greenyellow;
+    background-color: black;
+}
+
+.devPic img{
+    
+        height: 50vh;
+        width: 30vw;
+        
+}
+.sidebargo{
+    transform: translate(-443px, 0px);
+    position: absolute;
+}
+
+.hamburger{
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    left: 10px;
+    background-color: rgb(202, 190, 190);
+}
+
+.cross{
+    margin-left: 160px;
+    
+}
+
+
+
+
+
+
+
+
+
+@media(max-width: 1000px){/*
+    *{
+        background-color: wheat;
+    }
+    .sidebar{
+        transform: translate(-443px, 0px);
+        position: absolute;
+    }*/
+    .devPic{
+        display: none;
+    }
+}

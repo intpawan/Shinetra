@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar {
+    background-color: rgb(202, 190, 190);
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.4s ease-in-out; /* Smooth sidebar transition */
+    position: absolute;
+}
+
+.sidebargo {
+    transform: translate(-443px, 0px);
+    position: absolute;
+    transition: transform 0.4s ease-in-out; /* Smooth sidebar transition */
+}
+
+.sidebar nav {
+    padding: 45px;
+}
+
+.sidebar nav li {
+    list-style: none;
+    font-size: 30px;
+    padding: 33px 0;
+}
+
+.sidebar nav li a {
+    font-size: 20px;
+    padding: 30px 0;
+    text-decoration: none;
+    color: black;
+}
+
+.sidebar nav li a:hover {
+    color: rgb(19, 19, 161);
+    font-weight: bold;
+}
+
+.main {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    transition: margin-left 0.4s ease-in-out; /* Smooth content shift */
+}
+
+.infoContainer {
+    display: flex;
+    background-color: green;
+    margin: 145px auto;
+    justify-content: space-around;
+    padding-left: 10px;
+    transition: all 0.3s ease; /* Smooth transitions */
+}
+
+.lightbox-container {
+    perspective: 10000px;
+    margin-left: 30vw;
+    margin-top: 20vw;
+    margin-right: 10vw;
+}
+
+.lightbox {
+    width: 300px;
+    height: 200px;
+    background-color: #538808;
+    transform-style: preserve-3d;
+    transform: rotateY(360deg);
+    transition: transform 1s ease-in-out; /* Smoother transition */
+    box-shadow: 0 0 30px rgba(225, 222, 222, 0.845);
+    position: absolute;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    animation: rotateLightbox 4s linear infinite; /* Reduced duration for a smoother effect */
+}
+
+@keyframes rotateLightbox {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(180deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+.box-front, .box-back, .box-right, .box-left, .box-top, .box-bottom {
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 30px rgba(225, 222, 222, 0.845);
+    transition: transform 3s;
+}
+
+/* Additional specific box-face classes go here */
+
+.hamburger {
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    left: 10px;
+    background-color: rgb(202, 190, 190);
+}
+
+.cross {
+    margin-left: 160px;
+}
+
+.buttons button {
+    color: gold;
+    background-color: black;
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 20vw;
+    transition: color 0.2s ease, background-color 0.2s ease; /* Smooth button hover transition */
+}
+
+.buttons button:hover {
+    color: greenyellow;
+    background-color: black;
+}

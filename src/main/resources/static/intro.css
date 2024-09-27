@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    
+}
+
+.sidebar {
+    background-color: rgb(202, 190, 190);
+    /*width: 20vw;
+    height: 100vh;*/
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.2s ease-in;
+    position: absolute;
+
+}
+
+.sidebar nav {
+    padding: 45px;
+}
+
+.sidebar nav li {
+    list-style: none;
+    font-size: 30px;
+    padding: 33px 0;
+}
+.sidebar nav li a{
+    
+    font-size: 20px;
+    padding: 30px 0;
+    text-decoration: none;
+    color: black;
+}
+.sidebar nav li a:hover{
+    color:rgb(19, 19, 161);
+    font-weight: bold;
+}
+
+.main {
+   
+   
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+   
+}
+
+
+.infoContainer{
+    display: flex;
+    background-color: green;
+    margin: 145px auto;
+    justify-content: space-around;
+    padding-left: 10px;
+    
+
+}
+.lightbox-container {
+    perspective: 10000px;
+    margin-left: 30vw;
+    margin-top: 20vw;
+    margin-right: 10vw;
+    
+}
+
+
+
+.lightbox {
+    width: 300px;
+    height: 200px;
+    
+    background-color: #538808;
+    transform-style: preserve-3d;
+    transform: rotateY(360deg);
+    transition: transform 3s;
+    box-shadow: 0 0 30px rgba(225, 222, 222, 0.845);
+    position: absolute;
+    display: inline-flexbox ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    animation: rotateLightbox 5s linear infinite;
+}
+@keyframes rotateLightbox {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(180deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+.box-front  { transform: rotateY(0deg) translateZ(150px); 
+    width: 300px;
+    height: 200px;
+    
+    background-color: #886208dd;
+    transform-style: preserve-3d;
+    
+    transition: transform 3s;
+    box-shadow: 0 0 30px rgba(225, 222, 222, 0.845);
+    position: absolute;
+    display: inline-flexbox ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    
+}
+.box-back   { transform: rotateY(180deg) translateZ(150px);
+    width: 300px;
+    height: 200px;
+    
+    background-color: #538808;
+    transform-style: preserve-3d;
+    
+    transition: transform 3s;
+    box-shadow: 0 0 30px rgba(225, 222, 222, 0.845);
+    position: absolute;
+    display: inline-flexbox ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    
+}
+.box-right  { transform: rotateY(90deg) translateZ(150px);
+    width: 300px;
+    height: 200px;
+    
+    background-color: #538808dd;
+    transform-style: preserve-3d;
+    
+    transition: transform 3s;
+    box-shadow: 0 0 30px rgba(225, 222, 222, 0.845);
+    position: absolute;
+    display: inline-flexbox ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    
+ }
+.box-left   { transform: rotateY(-90deg) translateZ(150px); 
+    width: 300px;
+    height: 200px;
+    
+    background-color: #887308;
+    transform-style: preserve-3d;
+    
+    transition: transform 3s;
+    box-shadow: 0 0 30px rgba(138, 67, 33, 0.845);
+    position: absolute;
+    display: inline-flexbox ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    
+}
+.box-top    { transform: rotateX(90deg) translateZ(150px);
+    width: 300px;
+    height: 200px;
+    
+    background-color: #880822dd;
+    transform-style: preserve-3d;
+    
+    transition: transform 3s;
+    box-shadow: 0 0 30px rgba(207, 9, 9, 0.845);
+    position: absolute;
+    display: inline-flexbox ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    
+}
+.box-bottom { transform: rotateX(-90deg) translateZ(150px);
+    width: 300px;
+    height: 200px;
+    
+    background-color: #f70606dd;
+    transform-style: preserve-3d;
+    
+    transition: transform 3s;
+    box-shadow: 0 0 30px rgba(249, 250, 246, 0.845);
+    position: absolute;
+    display: inline-flexbox ;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    
+}
+.lightbox:hover {
+    transform: rotateY(0deg);
+    
+
+}
+
+/**/
+.minicontainer {
+    margin: 50px;
+    position: relative;
+}
+
+.about {
+    font-size: 20px;
+    padding: 0px;
+    left: 0;
+    color: rgb(10, 10, 10);
+    cursor: pointer;
+    width: fit-content;
+    display: inline-block;
+}
+
+.mini-chat-box {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 50px; /* Adjust according to your layout */
+    left: 0;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Show the mini-chat-box when hovering over the "about" div */
+.about:hover + .mini-chat-box {
+    display: block;
+}
+
+.mini-chat-box p {
+    margin: 0;
+    font-size: 14px;
+}
+/**/
+
+
+.container {
+    display: flex;
+}
+
+.devInfo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+.foto img{
+    margin-top: 0vh;
+    margin-left: 70vw;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 0 30px rgba(192, 143, 122, 0.845);
+
+}
+.about{
+    color: #538808;
+    margin-left: 20vw;
+    margin-top: 10vw;
+    font-weight: bold;
+    
+}
+.education{
+    color: #538808;
+    margin-left: 20vw;
+    margin-top: 1vw;
+    font-weight: bold;
+}
+.skills{
+    color: #538808;
+    margin-left: 20vw;
+    margin-top: 1vw;
+    font-weight: bold;
+}
+
+
+
+
+.sidebargo{
+    transform: translate(-443px, 0px);
+    position: absolute;
+}
+
+.hamburger{
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    left: 10px;
+    background-color: rgb(202, 190, 190);
+}
+
+.cross{
+    margin-left: 160px;
+    
+}
+
+.buttons button{
+    color: gold;
+    background-color: black;
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 20vw;
+    
+}
+.buttons button:hover{
+    color: greenyellow;
+    background-color: black;
+}
+
+
+
+
+
+
+
+
+@media(max-width: 1000px){/*
+    *{
+        background-color: wheat;
+    }
+    .sidebar{
+        transform: translate(-443px, 0px);
+        position: absolute;
+    }*/
+    .devPic{
+        display: none;
+    }
+}

@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+   
+}
+
+.sidebar {
+    background-color: rgb(202, 190, 190);
+    /*width: 20vw;
+    height: 100vh;*/
+    font-family: 'Poppins', sans-serif;
+    transition: transform 0.2s ease-in;
+    position: absolute;
+
+}
+
+.sidebar nav {
+    padding: 45px;
+}
+
+.sidebar nav li {
+    list-style: none;
+    font-size: 30px;
+    padding: 33px 0;
+}
+.sidebar nav li a{
+    
+    font-size: 20px;
+    padding: 30px 0;
+    text-decoration: none;
+    color: black;
+}
+.sidebar nav li a:hover{
+    color:rgb(19, 19, 161);
+    font-weight: bold;
+}
+
+.main {
+    background-color: rgb(191, 202, 174);
+    
+    background-image: url('/img/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
+.infoContainer{
+    padding-top: 30px;
+    padding: 0 34px;
+    background-color: rgba(100, 132, 100, 0.53);
+    height: 55vh;
+    width: 50vw;
+    
+    justify-content: center;
+    margin-left: 20vw;
+    margin-top: 20vh;
+    margin-right: 10vw;
+    border-radius: 20px;
+    border-color: blue;
+    border-width: 7px;
+    box-shadow: 0 0 1000px greenyellow;
+    
+    
+}
+.devInfo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+.infoContainer h1{
+    display: flex;
+    color: black;
+    margin-bottom: 10px;
+    justify-content: center;
+    
+    
+}
+
+.container {
+    display: flex;
+    
+   
+}
+.emailHelp{
+    padding: 10px 0;
+    
+}
+.mb-3{
+    padding: 5px 0;
+  
+}
+.form-control{
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    width: 50vw;
+    padding: 5px;
+}
+#clintmessage{
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    width: 50vw;
+    padding: 5px;
+    
+}
+
+.btn {
+    color: gold;
+    background-color: black;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.form-text{
+    font-size: 9px;
+    color:gold;
+   
+}
+
+
+
+.sidebargo{
+    transform: translate(-443px, 0px);
+    position: absolute;
+}
+
+.hamburger{
+    position: absolute;
+    cursor: pointer;
+    top: 10px;
+    left: 10px;
+    background-color: rgb(202, 190, 190);
+}
+
+.cross{
+    margin-left: 160px;
+    
+}
+
+
+
+
+
+
+
+
+
+@media(max-width: 1000px){/*
+    *{
+        background-color: wheat;
+    }
+    .sidebar{
+        transform: translate(-443px, 0px);
+        position: absolute;
+    }*/
+    .devPic{
+        display: none;
+    }
+}

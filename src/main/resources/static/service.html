@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shinetra</title>
+    <link rel="stylesheet" href="service.css">
+</head>
+<body>
+<div class="container">
+
+
+    <div class="sidebar sidebargo">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="intro.html">My Intro</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact Shi</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Section -->
+    <div class="main">
+
+
+        <div class="hamburger">
+            <img class="ham" src="img/sidebar.png" width="23" alt="Menu Icon">
+            <img class="cross" src="img/x-symbol.svg" width="23" alt="Close Icon">
+        </div>
+
+        <!-- Main Content for Shi Market -->
+        <div class="main">
+            <div class="head">
+                <h1>Shi Market</h1>
+
+            </div>
+            <nav>
+
+                <div class="cart">
+                    <h2> Cart </h2>
+                    <img src="img/Shopping_cart_icon.svg.png" class="icon" alt="Cart Icon">
+                    <ul id="cart-items">
+                        <!-- Cart items will be added here -->
+                    </ul>
+                    <p>Total: $<span id="total-price">0</span></p>
+                    <button onclick="checkout()">Checkout</button>
+                </div>
+
+            </nav>
+
+
+            <!-- Product Display Section -->
+            <div class="products">
+                <h2></h2>
+                <div class="product-list">
+
+                    <div class="product">
+                        <img src="Shinetra_Product_Sample/T-Shirt-Basic.jpg" alt="Product 1" width="100">
+                        <h3>T-shirt basic</h3>
+                        <p>Price: $10</p>
+                        <button onclick="addToCart('Product 1', 10)">Add to Cart</button>
+                    </div>
+
+
+                    <div class="product">
+                        <img src="Shinetra_Product_Sample/T-Shirt-Polo.jpg" alt="Product 2" width="150">
+                        <h3>T-shirt Polo</h3>
+                        <p>Price: $30</p>
+                        <button onclick="addToCart('Product 2', 30)">Add to Cart</button>
+                    </div>
+
+
+                    <div class="product">
+                        <img src="Shinetra_Product_Sample/5c2573d5-77a2-441b-9062-226405eea7b5.jpg" alt="Product 3" width="100">
+                        <h3>Product 3</h3>
+                        <p>Price: $30</p>
+                        <button onclick="addToCart('Product 3', 30)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+
+
+            <div class="infoContainer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="script.js"></script>
+<script>
+    let cartId = null; // To store the cart ID once created
+    let cart = [];
+    let totalPrice = 0;
+
+    // Function to initialize cart or fetch existing one
+    async function initializeCart() {
+        try {
+            const response = await fetch(`http://localhost:8080/api/cart/1`);
+            if (response.status === 404) {
+                // If cart does not exist, create  new
+                const createResponse = await fetch('http://localhost:8080/api/cart/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                });
+                if (!createResponse.ok) {
+                    throw new Error('Failed to create a new cart');
+                }
+                const newCartData = await createResponse.json();
+                cartId = newCartData.id;  // Store new cartId
+                cart = [];
+                totalPrice = 0;
+            } else {
+                const cartData = await response.json();
+                cartId = cartData.id;
+                cart = cartData.products;
+                totalPrice = cartData.totalPrice;
+            }
+            updateCart();  // Update the UI with the cart data
+        } catch (error) {
+            console.error(error);
+            alert('Failed to initialize cart. Please try again.');
+        }
+    }
+
+    //   add product to cart and send it to the server
+    async function addToCart(productName, productPrice) {
+        const product = { name: productName, price: productPrice };
+
+        // Update local cart (UI) optimistically
+        cart.push(product);
+        totalPrice += productPrice;
+        updateCart();  // Update UI
+
+        try {
+            if (!cartId) {
+                // Initialize cart if it hasn't been created yet
+                await initializeCart();
+            }
+
+            // Send the product to the backend to be added to the server-side cart
+            const response = await fetch(`http://localhost:8080/api/cart/${cartId}/add`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(product),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to add product to server-side cart');
+            }
+
+            const updatedCart = await response.json();
+            cart = updatedCart.products;
+            totalPrice = updatedCart.totalPrice;
+            updateCart(); // Sync UI with server-side cart data
+        } catch (error) {
+            console.error(error);
+            alert('Failed to add product to cart. Please try again.');
+        }
+    }
+
+    // Update cart display
+    function updateCart() {
+        const cartItems = document.getElementById('cart-items');
+        cartItems.innerHTML = '';
+        cart.forEach((item) => {
+            const li = document.createElement('li');
+            li.textContent = `${item.name} - $${item.price}`;
+            cartItems.appendChild(li);
+        });
+        document.getElementById('total-price').textContent = totalPrice;
+    }
+
+    //  checkout function
+    async function checkout() {
+        if (cart.length === 0) {
+            alert('Your cart is empty!');
+        } else {
+            try {
+                // Capture the current cart details before checkout
+                const numOfItems = cart.length;
+                const totalPurchaseAmount = totalPrice;
+
+                // Send checkout request
+                const response = await fetch(`http://localhost:8080/api/cart/${cartId}/checkout`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to checkout');
+                }
+
+                // Clear cart data after checkout
+                const clearedCart = await response.json();
+                cart = clearedCart.products;  // Reset cart to empty array
+                totalPrice = clearedCart.totalPrice;  // Reset total price
+
+                updateCart();  // Update the UI with cleared cart
+
+                // Show final messages
+                alert(`Checkout successful! You purchased ${numOfItems} items for a total of $${totalPurchaseAmount}.`);
+                alert('Your cart is now empty. Total items: 0, Total amount: $0');
+            } catch (error) {
+                console.error(error);
+                alert('Checkout failed. Please try again.');
+            }
+        }
+    }
+
+
+
+    // Initialize the cart when the page loads
+    initializeCart();
+
+</script>
+</body>
+</html>
